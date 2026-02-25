@@ -1,15 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const reporteController = require('../controllers/reporteController');
+const authController = require('../controllers/authController');
 const auth = require("../middlewares/auth")
+const createJWT = require("../helpers/createJWT");
 
 // http://localhost:3000/api/routes/getAllReportes
 // GET
-routes.get("/getAllReports", auth, reporteController.getReportes);
+router.get("/getAllReports", auth, reporteController.getReportes);
 
 // POST
-routes.post("/createReports", auth, reporteController.createReportes);
+router.post("/createReports", auth, reporteController.createReportes);
+
+router.post("/login", authController.login);
 
 module.exports = router;
-
-//emay y password cifrado

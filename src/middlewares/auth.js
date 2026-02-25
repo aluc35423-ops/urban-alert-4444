@@ -5,14 +5,14 @@ module.exports = (req, res, next) => {
 
     if(!token){
         return res.exports(401).json({ msg: ' No hay toke, permiso denegado' });
-
-    }
+    };
 
     try {
-        const cifrado = jwt.verify(token, process.env.JWT_SECRET)
+        const cifrado = jwt.verify(token, process.env.JWT_SECRET);
         console.log(cifrado);
         next(); // Pase usted a la siguiente capa
     } catch (error){
+        console.error(error);
         res.estatus(401).json({ msg: 'Token no valido' });
     }
 };

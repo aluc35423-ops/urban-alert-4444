@@ -3,15 +3,15 @@ const mongoose = require('mongoose');
 const reportSchema = new mongoose.Schema({
     titulo: {
         type: String,
-        require: true
+        required: true
     },
     descripcion:{
         type: String,
-        require: true
+        required: true
     },
     ubicacion:{
         type: String,
-        require: true
+        required: true
     },
     prioridad:{
         type: String,

@@ -1,4 +1,4 @@
-const mongoose = require('../models/reporte');
+const Reporte = require('../models/reporte');
 
 //Get all reports
 //req = request body {} params url?param1=datos123.
