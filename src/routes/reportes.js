@@ -11,7 +11,7 @@ router.get("/getAllReports", auth, reporteController.getReportes);
 
 // POST
 router.post("/createReports", auth, reporteController.createReportes);
-
-router.post("/login", authController.login);
+router.post("/register", authController.registerUsuario);
+router.post("/login", authController.loginUsuario);
 
 module.exports = router;
