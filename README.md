@@ -2,7 +2,7 @@
 
 ## ¿Qué es UrbanAlert?
 
-Urban-Alert es un Software para gestionar y centralizar reportes de incidentes urbanos. Permite a los usuarios registrarse, autenticarse de forma segura y crear reportes de emergencias. Además, cuenta con un sistema inteligente que clasifica automáticamente la prioridad del reporte (por ejemplo, asignando prioridad "Alta" si se detectan palabras como "fuego" o "incendio" en la descripción).
+Urban-Alert es un sistema en desarrollo el cual servira para gestionar y centralizar reportes de incidentes urbanos. Por el momento permite a los usuarios registrarse, autenticarse de forma segura y crear reportes de emergencias. Además, cuenta con un sistema inteligente que clasifica automáticamente la prioridad del reporte (por ejemplo, asignando prioridad "Alta" si se detectan palabras como "fuego" o "incendio" en la descripción).
 
 ## Tecnologías Utilizadas
 
@@ -20,6 +20,7 @@ Una vez que hayas clonado el repositorio, abre tu terminal en la carpeta del pro
 ```bash
 npm install express mongoose dotenv bcrypt jsonwebtoken
 ```
+De esta manera instalaras cada una de las librerias necesarias para correr el código.
 
 *¿Qué hace cada librería?*
 
@@ -27,14 +28,14 @@ npm install express mongoose dotenv bcrypt jsonwebtoken
 
 * **mongoose**: Nos conecta con MongoDB y nos deja crear los modelos de datos.
 
-* **dotenv**: Carga las variables de entorno desde el archivo .env para proteger datos sensibles.
+* **dotenv**: Carga las variables de entorno desde el archivo **.env** para proteger datos sensibles.
 
-* **bcrypt**: Se encarga de hashear (encriptar) las contraseñas de los usuarios para máxima seguridad.
+* **bcrypt**: Se encarga de hashear **(encriptar)** las contraseñas de los usuarios para máxima seguridad.
 
 * **jsonwebtoken**: Genera y verifica los tokens para proteger las rutas privadas.
 
 ### 2. Configuración de Variables de Entorno
-Crea un archivo llamado .env en la raíz del proyecto. Aquí guardarás las credenciales sensibles. Agrega las siguientes variables con tu propia configuración:
+Crea un archivo llamado **.env** en la raíz del proyecto. Aquí guardarás las credenciales sensibles. Agrega las siguientes variables con tu propia configuración:
 
 ```bash
 PORT=3000
@@ -54,17 +55,17 @@ node index.js
 Verás un mensaje en consola indicando que la conexión a MongoDB fue exitosa y el puerto en el que está corriendo.
 
 ## Main Endpoints
-Todas las rutas base están configuradas bajo */api/reportes*.
+Todas las rutas base están configuradas bajo **/api/reportes**.
 
 ### Autenticación (Rutas Públicas)
-POST */api/reportes/register*: Crea un nuevo usuario en la base de datos encriptando su contraseña.
+``` POST /api/reportes/register ```: Crea un nuevo usuario en la base de datos encriptando su contraseña.
 
-POST */api/reportes/login*: Valida las credenciales del usuario y devuelve un token JWT con vigencia de 1 hora.
+``` POST /api/reportes/login ```: Valida las credenciales del usuario y devuelve un token JWT con vigencia de 1 hora.
 
 ### Reportes (Rutas Protegidas)
 
-*Nota:* Se requiere enviar el JWT en los headers de la petición (Authorization: Bearer <tu_token>).
+**Nota:** Se requiere enviar el JWT en los headers de la petición (Authorization: Bearer <tu_token>).
 
-GET */api/reportes/getAllReports*: Obtiene la lista completa de todos los reportes generados.
+``` GET /api/reportes/getAllReports ```: Obtiene la lista completa de todos los reportes generados.
 
-POST */api/reportes/createReports*: Crea un nuevo reporte en el sistema (título, descripción, ubicación).
+``` POST /api/reportes/createReports ```: Crea un nuevo reporte en el sistema (título, descripción, ubicación).
