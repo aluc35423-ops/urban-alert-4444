@@ -1,9 +1,11 @@
 # URBAN-ALERT
 
 ## ¿Qué es UrbanAlert?
+
 Urban-Alert es un Software para gestionar y centralizar reportes de incidentes urbanos. Permite a los usuarios registrarse, autenticarse de forma segura y crear reportes de emergencias. Además, cuenta con un sistema inteligente que clasifica automáticamente la prioridad del reporte (por ejemplo, asignando prioridad "Alta" si se detectan palabras como "fuego" o "incendio" en la descripción).
 
 ## Tecnologías Utilizadas
+
 * **Node.js**: Entorno de ejecución para el backend.
 * **Express**: Framework para la creación y manejo de rutas de la API.
 * **MongoDB & Mongoose**: Base de datos NoSQL y modelado de datos para almacenar usuarios y reportes.
@@ -14,9 +16,11 @@ Urban-Alert es un Software para gestionar y centralizar reportes de incidentes u
 
 ### 1. Instalar dependencias
 Una vez que hayas clonado el repositorio, abre tu terminal en la carpeta del proyecto y ejecuta:
+
 ```bash
 npm install express mongoose dotenv bcrypt jsonwebtoken
 ```
+
 *¿Qué hace cada librería?*
 
 * **express**: Levanta el servidor y maneja las rutas de la API.
@@ -42,6 +46,7 @@ JWT_SECRET=tu_palabra_secreta_super_segura
 
 ### 3. Iniciar el servidor
 Para levantar la API en tu entorno local, ejecuta:
+
 ```bash
 node index.js
 ```
