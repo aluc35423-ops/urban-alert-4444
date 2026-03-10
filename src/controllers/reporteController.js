@@ -8,7 +8,7 @@ exports.getReportes = async (req, res) => {
         res.json(reportes);
     } catch (error) {
         //Error general
-        res.status(500).json({error: "Error: Get Reports", message: error})
+        res.status(500).json({error: "Error: Get Reports", message: error.message})
     }
 };
 
@@ -17,9 +17,10 @@ exports.createReportes = async (req, res) => {
         const {titulo, descripcion, ubicacion} = req.body;
 
         // Logic
-        let prioridad = "media";
-        if (descripcion.toLowerCase().includes('fuego') || descripcion.toLowerCase().includes('incendio')){
-            prioridad = "alta"
+        let prioridad = "Media";
+        const desLower = descripcion.toLowerCase();
+        if (desLower.includes('fuego') || desLower.includes('incendio')){
+            prioridad = "Alta";
         }
 
         const nuevoReporte = new Reporte({
@@ -30,9 +31,9 @@ exports.createReportes = async (req, res) => {
         });
 
         await nuevoReporte.save();
-        res.status(201).json(nuevoReporte); //carga exitosa
+        res.status(201).json({msg: "Reporte creado con éxito", reporte: nuevoReporte});
     } catch (error) {
         //Error de envio
-        res.status(400).json({error: "Error: Create reports", message: error})
+        res.status(400).json({error: "Error: Create reports", message: error.message})
     }
 }

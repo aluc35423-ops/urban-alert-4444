@@ -1,11 +1,11 @@
-const Usuarios = require('../models/usuario');
+const Usuario = require('../models/usuarios');
 
 const bcrypt = require ('bcrypt');
 
 const jwt = require ('jsonwebtoken');
 
 const generarJWT = require('../middlewares/auth');
-
+  
 exports.registerUsuario = async (req, res) => {
     try {
         const {email, password} = req.body;
@@ -36,7 +36,7 @@ exports.loginUsuario = async (req, res) => {
         const {email, password} = req.body;
         const usuario = await Usuario.findOne({ email });
         if (!usuario) {
-            return res.status(401).json({ error: "El usuario ya existe" });
+            return res.status(401).json({ error: "El usuario no encontrado" });
         };
 
         const isMatch = await bcrypt.compare(password, usuario.password);
@@ -46,11 +46,17 @@ exports.loginUsuario = async (req, res) => {
 
         const payload = {usuario: {id: usuario.id, email: usuario.email} };
 
+        // firmar JWT
         jwt.sign(
-            payload,
-            process.env.JWT_SECRET,
-            {  }
-        )
+            payload, 
+            process.env.JWT_SECRET, 
+            { expiresIn: '1h' },
+            (err,token) =>{ //devolver un callback de error
+            if(err) throw err;
+            res.json({token});
+        });
 
     } catch(error) {
-        res.status(500).json( {msg: 'Error en el s
+        res.status(500).json( {msg: 'Error en el servidor', message: error} );
+    }
+};
