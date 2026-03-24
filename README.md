@@ -20,6 +20,7 @@ Once you have cloned the repository, open your terminal in the project folder an
 ```bash
 npm install express mongoose dotenv bcrypt jsonwebtoken
 ```
+
 This will install each of the libraries needed to run the code.
 
 **What does each bookshop do?**
